@@ -57,6 +57,23 @@ Formalno jezgro: **0 je element koji ništa ne menja (a + 0 = a)**. Ostale osobi
 
 Ovo je **preformulacija, ne dokaz**. Centriranje ogledala na nulu je izbor koordinata, odnosno konvencija.
 
+### Model: lenjir kroz prsten (Srećko)
+
+Prsten stoji, a kroz njegovu rupu se gura lenjir, odnosno brojevna prava. Ispred prstena su pozitivni podeoci, a sa druge strane izlaze negativni. Lenjir ne dodiruje prsten, nego prolazi kroz rupu. Prsten je nacrtan kao znak „0“.
+
+Šta model tačno pokazuje:
+- **Prsten je prag i referenca.** Deli prostor na „pre“ i „posle“ i u svakom trenutku pokazuje koji podeok je na pragu. Bez njega ne postoje ni + ni −, jer znak postoji samo u odnosu na nulu.
+- **Neprekidan prelaz iz + u − mora kroz rupu** (Bolcano u fizičkom obliku).
+- **Oba mehanizma promene znaka su prisutna istovremeno:** prsten je *krug oko nule* (faza, rotacija), a lenjir je *prava kroz nulu* (amplituda, promena znaka). To je kompleksna ravan: jedinični krug i realna osa kroz njegov centar.
+- Lenjir kroz rupu prolazi trenutno, bez zadržavanja. Nula je stanje bez trajanja (skup trenutaka u kojima je sin t = 0 ima meru nula).
+
+Ograde koje su ostale posle razgovora:
+- **Prsten ne gura.** Gura ruka, odnosno proces. Prsten je fiksan, a lenjir se kreće.
+- **Prsten „pokazuje transformaciju“, ali je ne vrši.** Podeoci su na lenjiru bili negativni i pre prolaska. Prsten obeležava granicu, a ne pretvara + u −.
+- To što znak 0 liči na prsten je istorijska slučajnost: indijski znak za nulu je prvo bio **tačka** (bindu).
+
+Kao nastavna analogija model je konkretan (može se napraviti od kartona) i pokazuje i prelaz kroz nulu i ulogu nule kao praga.
+
 ---
 
 ## 4. Eksperimenti
