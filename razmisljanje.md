@@ -67,3 +67,36 @@ def broj_nula(x):
 for n in range(8):
     print(n, broj_nula(fon_nojman(n)))   # 1, 1, 2, 4, 8, 16, 32, 64
 ```
+
+---
+
+# Drugo pitanje: da li je Riman govorio o svim nulama?
+
+## Pitanje i kapric (Srećko)
+
+Ako se računa fon Nojman, da li je Riman govorio o *svim* nulama? I kapric, zapisan kao takav:
+
+> **„Možda je (fon) Nojman ukazao na Rimana“**, u smislu: proverite gradivnu funkciju Rimana. Da li je govorio samo o *jednoj ekspresiji* nule, ili o *svim ekspresijama nule kroz građenje broja*?
+
+## Šta je proverljivo (Claude)
+
+**Istorijski: ne.** Riman (1859) je pisao o korenima jedne funkcije, ξ(t): *„es ist sehr wahrscheinlich, dass alle Wurzeln reell sind“* („veoma je verovatno da su svi koreni realni“). Fon Nojmanova konstrukcija brojeva nastala je 1923, 64 godine kasnije. Fon Nojman nije pisao o Rimanovoj hipotezi u vezi sa svojom konstrukcijom. „Ukazao je“ ovde može da znači samo *čitanje unazad*, a ne istorijsku vezu.
+
+**Pojmovno: različite nule.** Kod Rimana „nula“ je koren funkcije (uloga **K**). Kod fon Nojmana to je prazan skup ∅ unutar zapisa broja (uloga **P**). Brojevi se ponašaju potpuno različito: nula zete do visine T ima oko (T/2π)·ln(T/2πe), a broj ∅ u fon Nojmanovom broju n je 2ⁿ⁻¹. Nijedna poznata formula ih ne povezuje.
+
+**Ali kapric ima precizan matematički pandan, i to je zanimljiv deo.** Riman je zaista govorio o *jednoj* ekspresiji, o zeti celih brojeva. Kad se brojevi grade dalje, i svaki novi brojni sistem dobije **svoju** zeta funkciju:
+
+| kako se grade brojevi | njihova zeta / L-funkcija | odgovarajuća hipoteza |
+|---|---|---|
+| celi brojevi (iz nule, Peano / fon Nojman) | Rimanova ζ(s) | **Rimanova hipoteza** |
+| celi brojevi „po modulu“ (aritmetičke progresije) | Dirihleove L-funkcije L(s, χ) | **uopštena RH (GRH)** |
+| prošireni brojni sistemi (npr. Gausovi celi brojevi a + bi, algebarski celi brojevi) | Dedekindova zeta ζ_K(s) | **proširena RH (ERH)** |
+| najopštije (automorfne forme) | automorfne L-funkcije | **„velika“ RH (Grand RH)** |
+
+Pitanje „da li je govorio samo o jednoj ekspresiji, ili o svim ekspresijama kroz građenje broja“ ima, dakle, stvaran odgovor: **Riman je formulisao hipotezu za jednu ekspresiju, a matematika ju je posle proširila na čitavu porodicu**, po jednu zeta funkciju za svaki način građenja brojeva. Sve one su otvorene (nijedna nije dokazana), i za sve se veruje da su nule na istoj kritičnoj liniji ½.
+
+**Ograda:** to nije fon Nojmanova ideja, i ta porodica se ne gradi brojanjem ∅. Ali duh kaprica, da nula funkcije ne pripada jednoj ekspresiji nego celom građenju brojeva, poklapa se sa načinom na koji se Rimanova hipoteza danas razume.
+
+## Moguća provera
+
+Dirihleove L-funkcije se mogu izračunati numerički, kao i zeta (npr. `mpmath.dirichlet`). Isti eksperimenti iz README-a (prolasci kroz 0, Lemerovi parovi, kontrakcija K) mogli bi se ponoviti na drugoj „ekspresiji nule“. Pitanje bi bilo: **da li L-funkcije imaju istu kontrakciju K < 1 kao zeta**, ili je ona osobina samo Rimanove zete? To je otvoreno i proverljivo.
