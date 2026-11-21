@@ -2,3 +2,6 @@ scan.npz
 heat.pkl
 __pycache__/
 *.out
+.venv/
+*.npz
+*.pkl

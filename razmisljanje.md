@@ -100,3 +100,46 @@ Pitanje „da li je govorio samo o jednoj ekspresiji, ili o svim ekspresijama kr
 ## Moguća provera
 
 Dirihleove L-funkcije se mogu izračunati numerički, kao i zeta (npr. `mpmath.dirichlet`). Isti eksperimenti iz README-a (prolasci kroz 0, Lemerovi parovi, kontrakcija K) mogli bi se ponoviti na drugoj „ekspresiji nule“. Pitanje bi bilo: **da li L-funkcije imaju istu kontrakciju K < 1 kao zeta**, ili je ona osobina samo Rimanove zete? To je otvoreno i proverljivo.
+
+---
+
+# Provera kaprica: Dirihleova L-funkcija χ₄ (folder `kapric/`)
+
+Pitanje iz prethodnog odeljka, *da li druga „ekspresija nule“ ima istu kontrakciju kao Rimanova zeta*, provereno je na Dirihleovoj L-funkciji L(s, χ₄) (Dirihleova beta funkcija).
+
+## Šta je urađeno
+
+- **`kapric/dirichlet_scan.py`** (napisao Qwen, pokrenuo Srećko): skeniranje Hardijeve Z-funkcije za L(s, χ₄) na t od 10 do 1000. Našao je **867 nula**, što se tačno poklapa sa predviđanjem N(t) = (t/2π)·ln(4t/2πe) (866,9), i sa poznatim nulama (10,2437; 12,9880; 16,3426…). **Scan je ispravan.**
+- **`kapric/dirichlet_gue.py`** (napisao Qwen, pokrenuo Srećko): poređenje sa GUE omotačem. **Ima grešku zbog koje je rezultat neupotrebljiv** (vidi ispod).
+- **`kapric/dirichlet_kontrakcija.py`** (Claude): ispravljena analiza istih nula.
+
+## Pronađene greške
+
+1. **Udvostručene nule.** Scan čuva *parove* uzastopnih nula (z₁, z₂), (z₂, z₃)…, a `flatten()` je svaku nulu uzeo dvaput. Od „1731 razmaka“ **865 je bilo tačno 0**. Stvarnih razmaka ima 866.
+2. **Globalna normalizacija.** Razmaci su deljeni jednim prosekom, iako se gustina nula od t = 10 do 1000 menja skoro trostruko. Ispravno je lokalno odmotavanje preko N(t).
+3. **GUE generator** je imao istu grešku odmotavanja kao raniji predlog u eksperimentu 4b (srednjih 60 % spektra podeljeno jednim prosekom).
+4. *(sitnica)* Fazni faktor u scanu koristi Γ(¼ + it/2). Za neparan karakter χ₄ treba Γ(¾ + it/2). Na položaj nula ovo ovde nije uticalo (broj se tačno slaže), ali formula nije tačna.
+5. **Zaključak izveden pogrešnim putem.** Prvi komentar rezultata glasio je: najtešnji par (289/290, vrh 1,4 % okoline) „direktna je analogija Lemerovim parovima i sugeriše kontrakciju“. To ne sledi: kontrakcija znači *manje* malih razmaka, a tesni parovi se očekuju u svakom GUE skupu. Poređenja radi, kod zete je među prvih 870 nula najtešnji prolazak bio 3,2 %. Za kontrakciju je potrebna varijansa, a ne pojedinačan par.
+
+## Rezultat (ispravna analiza)
+
+| | K = Var / Var(GUE) | GUE šum 99 % (400 nizova po 866) |
+|---|---|---|
+| **L(s, χ₄)**, t 10–1000, 866 razmaka | **0,684** | 0,883 – 1,140 → **van šuma** (nijedan od 400 GUE nizova) |
+| donja polovina (niže t) | 0,650 | |
+| gornja polovina (više t) | 0,719 | |
+| *zeta, t 10–1300, 896 razmaka (za poređenje)* | *0,793* | |
+
+KS prema tačnoj GUE: 0,0633, uz GUE 99. percentil 0,0350, takođe van šuma. Grafik: `kapric/dirichlet_kontrakcija.png`.
+
+## Zaključak
+
+- **Kontrakcija postoji i kod Dirihleove L-funkcije χ₄.** K = 0,684 je daleko van GUE šuma. To odgovara na pitanje iz kaprica: kontrakcija *nije* osobina samo Rimanove zete. Javlja se i u drugoj „ekspresiji nule“.
+- Zaključak je tačan, ali tek po merenju varijanse, a ne po tesnom paru.
+- I ovde K raste sa visinom (0,650 → 0,719), u istom smeru kao kod zete.
+- **Ograde:** uzorak je mali (866 razmaka). Visine su niske, a tamo su korekcije najveće. „Jača kontrakcija nego kod zete“ (0,684 naspram 0,793) može biti samo posledica visine i različite gustine (konduktor q = 4), pa ovo poređenje nije pošteno dok se ne uradi na istoj efektivnoj gustini. Izvor kontrakcije ni ovde nije određen. U literaturi su za L-funkcije te korekcije takođe aritmetičke (preko prostih brojeva i karaktera).
+
+## Otvoreno
+
+- Ići više (t do 10⁴ i dalje) i porediti zetu i L(s, χ₄) na **istoj efektivnoj gustini** nula.
+- Probati još karaktera (npr. χ₃, χ₅) i videti da li K zavisi od karaktera ili samo od gustine.
