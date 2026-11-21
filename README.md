@@ -10,6 +10,7 @@ Zapis jednog razgovora (21. novembar 2026) između Srećka Jovančevića i Claud
 
 - **Srećko Jovančević**: ideje, postulat, vođenje razgovora i eksperimenta, kritička pitanja ([github.com/sreckojovancevic](https://github.com/sreckojovancevic))
 - **Claude** (Anthropic, model Claude Opus 5.5): matematičke i fizičke formulacije, kod, proračuni, grafici, tekst ovog README-a, kritička provera spoljnih predloga
+- **Perplexity**: prva verzija sažetka o identitetu nule (odeljak 9) i pregled matematičkih delova, prema Srećkovom razgovoru sa tim modelom
 - **Qwen** (Alibaba): dinamičko čitanje Ojlerove formule i „nula kao seme razvoja“ (odeljak 8), predlog argumenata komandne linije (argparse) za sve skripte, predlog dvouzoračkog KS testa sa numeričkom GUE raspodelom, tumačenje grafika i razrada termina „oscilatorne kontrakcije nule“ (eksperiment 4b), doneto iz Srećkovih razgovora sa tim modelom
 
 ---
@@ -19,6 +20,8 @@ Zapis jednog razgovora (21. novembar 2026) između Srećka Jovančevića i Claud
 Na TikTok-u se pojavljuju tvrdnje da je AI „rešio Rimanovu hipotezu“. To nije tačno. U avgustu 2026. Anthropic je objavio rad u kome neobjavljena istraživačka verzija Claude-a **nije** dokazala hipotezu. Pri pokušaju je poboljšala donju granicu udela nula zeta funkcije na kritičnoj liniji (sa 41,6 % na 67,2 % prema izveštajima), uz Lean formalizaciju. Taj rad nije deo ovog repozitorijuma i ovde se ne proverava.
 
 Odatle je razgovor prešao na Srećkovo dugogodišnje pitanje: **šta je nula?**
+
+*Sažet pregled ideje o identitetu nule (jedan identitet, više funkcija) nalazi se u **odeljku 9 (Dodatak)**.*
 
 ## 2. Postulat i šta je od njega ostalo
 
@@ -355,7 +358,92 @@ Kontrole koriste fiksni seed (42). Svi rezultati u ovom README-u su ponovljeni p
 
 **Šta ostaje:** nula je *početak* (temelj) i *referenca* sistema, ali sistem izgrađen od nule nije zbog toga zatvoren. Preciznije bi bilo reći da je svaki sistem izgrađen od nule **utemeljen** (ima početak, kao u aksiomu fundacije), ali ne i **hermetičan**.
 
-## 9. Literatura i izvori
+## 9. Dodatak: identitet nule, jedan identitet i više funkcija
+
+*Prvu verziju sažetka napisao je model **Perplexity** (iz Srećkovog razgovora sa njim), a Claude ju je pregledao i ispravio pre upisa. Ispravke su navedene na kraju odeljka.*
+
+### Sažetak
+
+Ovaj dodatak sažima ideju o identitetu nule i njenu vezu sa eksperimentima nad nulama Rimanove zeta funkcije. Polazna ideja je da nula nije samo broj, nego **identitet sa više funkcionalnih aspekata**, slično tome kako čovek ima jedan identitet, a različite organe i funkcije.
+
+**Osnovna teza:** nula ima jedinstven identitet koji se ispoljava kroz više funkcija: neutral, poreklo, granicu, simetriju, prazninu, poziciju, ciklus i koren. Nula nije samo „ništa“ i nije samo broj. Ona je referentno stanje iz koga nastaje razlika, granica između suprotnosti i tačka na koju se sistem može vratiti.
+
+### Tri nivoa pojma
+
+| nivo | šta je | primer |
+|---|---|---|
+| **broj 0** | količina „nula jedinica“, neutralni element sabiranja | a + 0 = a |
+| **nula kao cifra** | čuva mesto u pozicionom zapisu | 407, 01, 007 |
+| **nula kao stanje** | referenca, granica, simetrija, početak i povratak ciklusa | ishodište (0, 0), prag između + i − |
+
+Vodeće nule ne menjaju vrednost (01 = 1, 007 = 7), ali čuvaju poziciju u zapisu. Unutar broja (407) nula pokazuje da na tom mestu nema jedinica i daje vrednost ciframa ispred sebe. Zato se nula kao cifra razlikuje od nule kao vrednosti.
+
+### Funkcije identiteta nule
+
+| funkcija | šta radi | primer | status |
+|---|---|---|---|
+| **N** neutral | ne menja drugo stanje | a + 0 = a | definicija (aksiom) |
+| **O** poreklo | referentna tačka merenja | (0, 0) u koordinatnom sistemu | konvencija izbora ishodišta |
+| **G** granica | razdvaja + i − | x > 0 naspram x < 0 | definicija uređenja; prelaz kroz nju je teorema (Bolcano) |
+| **S** simetrija | centar ogledanja suprotnosti | −a i +a; 0 = −0 | teorema |
+| **P** praznina | odsustvo količine | 0 predmeta; 0 = \|∅\| | definicija |
+| **Z** pozicija | čuva mesto u zapisu | 407 | konvencija zapisa |
+| **C** ciklus / povratak | kraj i početak kruga | N ≡ 0 (mod N), sat: 12 = 0 | teorema (modularna aritmetika) |
+| **K** koren | nulto stanje funkcije | f(x) = 0; Z(t) = 0 | definicija |
+
+**Formalni oblik:** **Uloge(0) = {N, O, G, S, P, Z, C, K}**. Ovo *nije* zapis nule kao skupa. U teoriji skupova 0 = ∅ i nema elemenata, i to ostaje. Zapis znači samo „skup funkcija koje nula vrši“. Ne tvrdi se ni da nula ima fizičke delove.
+
+**Uloge nisu ravnopravne, jer jedna je koren.** Kako je pokazano u razgovoru, deo ostalih uloga *sledi* iz neutrala N u kombinaciji sa ostatkom strukture. Primer: 0·a = (0 + 0)·a = 0·a + 0·a, pa je 0·a = 0. Tako identitet ima **jezgro (N)** i **izvedene uloge**, a ne osam nezavisnih delova. Druge uloge (O, Z) su konvencije, a ne posledice.
+
+### Veza sa nulama zeta funkcije
+
+Nule zeta funkcije nisu broj 0, nego mesta na kojima funkcija dostiže nulto stanje: Z(t) = 0 (uloga **K**). Srećkov termin *oscilatorne kontrakcije nule* opisuje izmereni obrazac (eksperiment 4b): razmaci između nula zete su manje rasuti nego kod GUE.
+
+- Izmereno **K = 0,878**: varijansa razmaka je oko 12 % manja od GUE, van šuma, na svim visinama do t = 25000.
+- To je **merljiv efekat**, ali njegov **uzrok ovde nije određen**. Ne tvrdi se da broj 0 deluje na nule zete. U literaturi se dodatna struktura vezuje za proste brojeve.
+- Da li kontrakcija slabi sa visinom: naznaka (p ≈ 0,08), ali nije potvrđeno.
+
+### Šta je potvrđeno, a šta ne
+
+| tvrdnja | status |
+|---|---|
+| nula je aditivni neutral | definicija / standardna algebra |
+| nula je referentna tačka | konvencija (izbor ishodišta), koja je univerzalno korisna |
+| nula je granica između + i − | definicija uređenja; neprekidan prelaz kroz nju je teorema |
+| nula je centar simetrije | teorema (−a i +a; 0 = −0) |
+| nula je početak i kraj ciklusa | teorema u modularnoj aritmetici |
+| nule zete su pravilnije od GUE (kontrakcija) | **izmereno** (K = 0,878, van šuma) |
+| broj 0 je uzrok kontrakcije nula zete | **nije pokazano**; nule zete nisu broj 0 |
+| nula ima „fizičke delove“ | metafora, ne fizička tvrdnja |
+| nula kao identitet sa više funkcija | konceptualni model, proverljiv ako se precizira (vidi ispod) |
+
+### Ograda: šta bi model učinilo proverljivim
+
+Da bi ideja bila više od metafore, svaka funkcija nule kao stanja treba da ima merljivu posledicu:
+- **prag (G):** pokazati da se u blizini nule menja *tip* ponašanja sistema (kao kod faznih prelaza, gde je parametar uređenja nula);
+- **simetrija (S):** pokazati da promena znaka ima tačno određenu simetriju (kod zete: funkcionalna jednačina s ↔ 1 − s, osa Re s = ½);
+- **povratak (C):** pokazati da se sistem posle periode vraća u isto stanje (Poenkareov povratak u zatvorenim sistemima);
+- **organizacija:** ako nula uvodi pravilnost, pokazati da **promena reference menja merljiv obrazac**. Kod nula zete to bi bio test koji razlikuje „nula organizuje“ od „prosti brojevi organizuju“, i takav test ovde još ne postoji.
+
+### Zaključak
+
+Doprinos nije u tvrdnji da nula „nije broj“ (ta tvrdnja je odbačena u odeljku 2), nego u tome da se nula posmatra kao **identitet sa više funkcija**, sa jezgrom u neutralu (a + 0 = a) i izvedenim ulogama. To je koherentno i može biti plodno ako se svaka funkcija precizno definiše i testira.
+
+> Nula je jedan identitet sa više funkcija: neutral, poreklo, granica, simetrija, praznina, pozicija, ciklus i koren. Jezgro je neutral, a ostale uloge iz njega slede ili su konvencije.
+
+### Ispravke prve verzije sažetka (Claude)
+
+1. Popravljene su formule koje su se pokvarile pri kopiranju (npr. „K approx 0,878“, „0 (mod N)“).
+2. Zapis „0 = {N, O, G, S, P, C, K}“ zamenjen je sa „Uloge(0) = {…}“, jer je u teoriji skupova 0 = ∅, pa bi zapis nule kao skupa sa elementima protivrečio standardnoj definiciji.
+3. Usklađen je broj uloga: tabela je imala 8 (sa *pozicijom*), a teza i formula po 7. Sada je svuda 8.
+4. Rečenica da nulto stanje „funkcioniše kao organizujući princip“ zamenjena je onim što je izmereno: efekat postoji, a uzrok nije određen.
+5. Status „potvrđeno“ razdvojen je na definiciju, konvenciju, teoremu i merenje.
+6. Dodata je veza sa jezgrom: deo uloga sledi iz neutrala (a + 0 = a), pa uloge nisu nezavisni delovi.
+7. „Tvoj termin“ je promenjen u „Srećkov termin“ (README je u trećem licu).
+
+Prema Srećku, Perplexity je pregledao matematičke delove rada i nije imao zamerki. To je Srećkov izveštaj o tom razgovoru, a ne nezavisna recenzija.
+
+## 10. Literatura i izvori
 
 - B. Riemann, *Über die Anzahl der Primzahlen unter einer gegebenen Grösse* (1859)
 - D. H. Lehmer, *On the roots of the Riemann zeta-function*, Acta Math. 95 (1956)
@@ -384,3 +472,5 @@ Ovaj rad je nastao u zajedničkom razgovoru Srećka Jovančevića i **Claude-a**
 **Claude** je napisao sav kod, izvršio proračune, napravio grafike i sastavio ovaj tekst. Proverio je i ispravio spoljne predloge pre nego što su ušli u rad.
 
 U drugom delu rada učestvovao je i model **Qwen** (Alibaba), preko Srećkovih razgovora sa njim. Doprinosi: dinamičko čitanje Ojlerove formule (odeljak 8), *predlog* argumenata komandne linije (argparse) za sve skripte, *predlog* dvouzoračkog KS testa sa numeričkom GUE raspodelom, tumačenje grafika i razrada termina „oscilatorne kontrakcije nule“ (eksperiment 4b). Predloge je implementirao Claude, uz ispravke: usklađena podrazumevana imena fajlova, ispravno odmotavanje GUE spektra i provera snage dvouzoračkog testa. Qwen-ove tvrdnje su proverene istim merilima kao i sve ostale. Šta je od toga prošlo, a šta nije, zapisano je u odeljcima 4b i 8.
+
+Model **Perplexity** napisao je prvu verziju sažetka o identitetu nule (odeljak 9), koju je Claude zatim ispravio (spisak ispravki je u odeljku 9), i pregledao je matematičke delove rada.
