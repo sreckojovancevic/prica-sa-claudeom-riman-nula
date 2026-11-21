@@ -377,6 +377,10 @@ Kontrole koriste fiksni seed (42). Svi rezultati u ovom README-u su ponovljeni p
 
 ## Zahvalnice
 
-Ovaj rad je nastao u zajedničkom razgovoru Srećka Jovančevića i **Claude-a** (Anthropic, Claude Opus 5.5). Claude je napisao kod, izvršio proračune, napravio grafike i sastavio ovaj tekst. Srećko je postavio postulat, vodio pravac eksperimenta i insistirao na tome da se prikaže sve, a ne samo ono što radi.
+Ovaj rad je nastao u zajedničkom razgovoru Srećka Jovančevića i **Claude-a** (Anthropic, Claude Opus 5.5).
 
-U drugom delu rada učestvovao je i model **Qwen** (Alibaba), preko Srećkovih razgovora sa njim: dinamičko čitanje Ojlerove formule (odeljak 8), argparse za sve skripte, dvouzorački KS test i tumačenje grafika u eksperimentu 4b. Njegove tvrdnje su proverene istim merilima kao i sve ostale. Ono što je prošlo i ono što nije zapisano je u odeljcima 4b i 8.
+**Srećko** je postavio postulat o nuli, vodio pravac eksperimenta i insistirao na tome da se prikaže sve, a ne samo ono što radi. Njegovi su i pojmovi i slike kroz koje je rad vođen: *lenjir kroz prsten* (odeljak 3), *oscilatorne kontrakcije nule* (eksperiment 4b), *paralelna nula* posle sudara (eksperiment 5) i ideja *kontratega* koji drži strukturu.
+
+**Claude** je napisao sav kod, izvršio proračune, napravio grafike i sastavio ovaj tekst. Proverio je i ispravio spoljne predloge pre nego što su ušli u rad.
+
+U drugom delu rada učestvovao je i model **Qwen** (Alibaba), preko Srećkovih razgovora sa njim. Doprinosi: dinamičko čitanje Ojlerove formule (odeljak 8), *predlog* argumenata komandne linije (argparse) za sve skripte, *predlog* dvouzoračkog KS testa sa numeričkom GUE raspodelom, tumačenje grafika i razrada termina „oscilatorne kontrakcije nule“ (eksperiment 4b). Predloge je implementirao Claude, uz ispravke: usklađena podrazumevana imena fajlova, ispravno odmotavanje GUE spektra i provera snage dvouzoračkog testa. Qwen-ove tvrdnje su proverene istim merilima kao i sve ostale. Šta je od toga prošlo, a šta nije, zapisano je u odeljcima 4b i 8.
