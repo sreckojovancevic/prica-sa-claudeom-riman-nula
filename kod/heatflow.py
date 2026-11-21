@@ -2,6 +2,8 @@
 H_t(gamma) = exp(-(t/4) d^2/dgamma^2) Xi(gamma)   (x = 2*gamma u dBN konvenciji)
 t < 0  ->  obicna difuzija (izglacavanje): mali vrh izmedju nula nestaje, nule se sudaraju.
 Lokalno: Xi se aproksimira Cebisevljevim polinomom, pa je exp(s D^2) p tacno (konacna suma)."""
+import argparse
+import pickle
 import numpy as np
 import mpmath as mp
 from numpy.polynomial import Chebyshev as C
@@ -59,9 +61,21 @@ def collide(n1, label, half=1.6, deg=26):
 
 
 if __name__ == "__main__":
-    import pickle
+    parser = argparse.ArgumentParser(description="Lokalni toplotni tok: kada se par uzastopnih nula sudari")
+    parser.add_argument("--parovi", default="6709,4765,6700",
+                        help="indeksi prve nule svakog para, odvojeni zarezom (par je n1, n1+1); podrazumevano 6709,4765,6700")
+    parser.add_argument("--polusirina", type=float, default=1.6, help="poluširina prozora polinomne aproksimacije (podrazumevano 1.6)")
+    parser.add_argument("--stepen", type=int, default=26, help="stepen Cebisevljevog polinoma (podrazumevano 26)")
+    parser.add_argument("--izlaz", default="heat.pkl", help="izlazni .pkl (podrazumevano heat.pkl)")
+    args = parser.parse_args()
+    try:
+        parovi = [int(x) for x in args.parovi.split(",") if x.strip()]
+    except ValueError:
+        parser.error("--parovi mora biti lista celih brojeva, npr. 6709,4765")
+    if not parovi or min(parovi) < 1 or args.polusirina <= 0 or args.stepen < 4:
+        parser.error("neispravni argumenti (n1 >= 1, polusirina > 0, stepen >= 4)")
     res = {}
-    res["lehmer"] = collide(6709, "Lemerov par #1")
-    res["lehmer2"] = collide(4765, "Lemerov par #2")
-    res["normal"] = collide(6700, "obican par (kontrola)")
-    pickle.dump(res, open("heat.pkl", "wb"))
+    for n1 in parovi:
+        res[n1] = collide(n1, f"par {n1}/{n1+1}", half=args.polusirina, deg=args.stepen)
+    pickle.dump(res, open(args.izlaz, "wb"))
+    print(f"\nsacuvano: {args.izlaz}")

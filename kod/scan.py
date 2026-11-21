@@ -3,9 +3,20 @@ Brzi Riemann-Siegel (glavna suma + C0 korekcija) za skeniranje,
 pa precizna provera najtesnjih kandidata preko mpmath.siegelz."""
 import numpy as np
 import mpmath as mp
-import sys
+import argparse
 
-T_MIN, T_MAX, STEP = 14.0, float(sys.argv[1]) if len(sys.argv) > 1 else 7100.0, 0.005
+parser = argparse.ArgumentParser(description="Skeniranje Z(t): prolasci kroz 0 i visina vrha izmedju njih")
+parser.add_argument("--t-max", type=float, default=7100.0, help="gornja granica za t (podrazumevano 7100)")
+parser.add_argument("--t-min", type=float, default=14.0, help="donja granica za t (podrazumevano 14)")
+parser.add_argument("--korak", type=float, default=0.005, help="korak mreze (podrazumevano 0.005)")
+parser.add_argument("--top", type=int, default=25, help="koliko najtesnjih prolazaka precizno proveriti (podrazumevano 25)")
+parser.add_argument("--izlaz", default="scan.npz", help="izlazni .npz (podrazumevano scan.npz)")
+args = parser.parse_args()
+if not (0 < args.t_min < args.t_max):
+    parser.error("mora vaziti 0 < t-min < t-max")
+if args.korak <= 0 or args.top < 1:
+    parser.error("--korak mora biti > 0, --top >= 1")
+T_MIN, T_MAX, STEP = args.t_min, args.t_max, args.korak
 
 
 def theta(t):
@@ -45,7 +56,7 @@ rel = peaks / norm
 
 # precizna provera 25 najtesnjih (po relativnoj visini)
 mp.mp.dps = 20
-order = np.argsort(rel)[:25]
+order = np.argsort(rel)[:args.top]
 print("\n rang |  nule (redni br.)  |   t_1       t_2     | vrh |Z| (tacno) | vrh / medijana okoline")
 rows = []
 for r, i in enumerate(order, 1):
@@ -65,4 +76,5 @@ for r, i in enumerate(order, 1):
     rows.append((i + 1, float(t1), float(t2), float(pk), float(pk / norm[i])))
     print(f" {r:3d}  | {i + 1:6d} i {i + 2:6d}  | {float(t1):9.4f} {float(t2):9.4f} | {float(pk):.6f} | {float(pk / norm[i]):.5f}")
 
-np.savez("scan.npz", ts=ts, Z=Z, sc=sc, peaks=peaks, rel=rel)
+np.savez(args.izlaz, ts=ts, Z=Z, sc=sc, peaks=peaks, rel=rel)
+print(f"\nsacuvano: {args.izlaz}")

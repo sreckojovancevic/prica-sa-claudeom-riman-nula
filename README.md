@@ -156,6 +156,7 @@ Zapisano radi proverljivosti, sa obe strane.
 - Claude je broj kao oscilaciju prvo predstavio rotacijom e^(inθ). Na Srećkov zahtev prešlo se na linijsku oscilaciju. Pri tome je ispravljeno i to da se kod linijske oscilacije u 0 menja **strana**, a ne smer kretanja.
 - Claude je svoj lokalni model nazvao „prenosni model“, što je bila nejasna reč. Ispravno je „lokalni model“.
 - Prvo pokretanje `pattern.py` sadržalo je nečitku liniju koda. Ispravljena je pre objave, a rezultat se nije promenio.
+- Pri uvođenju argumenata (argparse) predlog je predviđao da `scan.py` piše `scan_t{t_max}.npz`, dok `pattern.py` i `gue.py` podrazumevano čitaju `scan.npz`. Pokretanje bez argumenata bi zato puklo. Ispravljeno pre objave: sve skripte podrazumevano koriste `scan.npz`.
 
 **Srećkove pretpostavke koje nisu prošle** navedene su u tabeli u odeljku 2.
 
@@ -173,15 +174,28 @@ Zapisano radi proverljivosti, sa obe strane.
 ```bash
 pip install -r requirements.txt
 cd kod
-python3 lehmer.py            # eksperiment 1  -> lehmer_par.png        (~30 s)
-python3 scan.py 7100         # eksperiment 2  -> scan.npz, tabela      (~45 s)
-python3 pattern.py           # eksperiment 3  (treba scan.npz)
-python3 gue.py               # eksperiment 4  (treba scan.npz)
-python3 heatflow.py          # eksperiment 5  -> heat.pkl              (~30 s)
+python3 lehmer.py            # eksperiment 1  -> lehmer_par_6709_6710.png   (~30 s)
+python3 scan.py              # eksperiment 2  -> scan.npz, tabela           (~45 s)
+python3 pattern.py           # eksperiment 3  (cita scan.npz)
+python3 gue.py               # eksperiment 4  (cita scan.npz)
+python3 heatflow.py          # eksperiment 5  -> heat.pkl                   (~30 s)
 python3 grafici_dodatni.py   # raspodela_vrhova.png, sudar_nula.png
 ```
 
-Kontrole koriste fiksni seed (42). Svi rezultati u ovom README-u su ponovljeni pokretanjem iz praznog foldera.
+Bez argumenata svaka skripta ponavlja rezultate iz ovog README-a. Sve imaju `--help`. Najvažniji argumenti:
+
+| skripta | argumenti (podrazumevano) |
+|---|---|
+| `lehmer.py` | `--n1 6709`, `--n2` (n1+1), `--prozor 5`, `--izlaz` |
+| `scan.py` | `--t-max 7100`, `--t-min 14`, `--korak 0.005`, `--top 25`, `--izlaz scan.npz` |
+| `pattern.py` | `--ulaz scan.npz`, `--prag 0.05`, `--seed 42`, `--izlaz` |
+| `gue.py` | `--ulaz scan.npz`, `--t-min 1000`, `--izlaz` |
+| `heatflow.py` | `--parovi 6709,4765,6700`, `--polusirina 1.6`, `--stepen 26`, `--izlaz heat.pkl` |
+| `grafici_dodatni.py` | `--scan scan.npz`, `--heat heat.pkl`, `--par 6709` |
+
+Primer, drugi Lemerov par: `python3 lehmer.py --n1 4765` (grafik `grafici/lehmer_par_4765_4766.png`).
+
+Kontrole koriste fiksni seed (42). Svi rezultati u ovom README-u su ponovljeni pokretanjem iz praznog foldera, i pre i posle uvođenja argumenata.
 
 ## 8. Literatura i izvori
 

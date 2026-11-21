@@ -1,12 +1,21 @@
+"""Razmaci nula: poredjenje sa GUE (Vignerova aproksimacija) i Poasonom, par-korelacija."""
+import argparse
 import numpy as np, matplotlib
 matplotlib.use("Agg"); import matplotlib.pyplot as plt
-d = np.load("scan.npz"); ts, Z, sc = d["ts"], d["Z"], d["sc"]
+
+parser = argparse.ArgumentParser(description="Raspodela razmaka nula: GUE ili Poason")
+parser.add_argument("--ulaz", default="scan.npz", help="izlaz skripte scan.py (podrazumevano scan.npz)")
+parser.add_argument("--t-min", type=float, default=1000.0, help="koristi samo nule iznad ove visine (podrazumevano 1000)")
+parser.add_argument("--izlaz", default="gue_poredjenje.png", help="ime grafika")
+args = parser.parse_args()
+
+d = np.load(args.ulaz); ts, Z, sc = d["ts"], d["Z"], d["sc"]
 z = ts[sc] - Z[sc]*(ts[sc+1]-ts[sc])/(Z[sc+1]-Z[sc])
 # "unfolding": prosecna gustina nula N(t) ~ t/2pi log(t/2pi e) + 7/8
 N = lambda t: t/(2*np.pi)*np.log(t/(2*np.pi*np.e)) + 7/8
 u = N(z)
 s = np.diff(u)
-s = s[u[:-1] > N(1000)]          # izbegni najnize nule (pravilnije)
+s = s[u[:-1] > N(args.t_min)]          # izbegni najnize nule (pravilnije)
 print(f"razmaka u analizi: {len(s)}, prosek {s.mean():.4f}")
 
 gue = lambda x: 32/np.pi**2 * x**2 * np.exp(-4*x**2/np.pi)
@@ -41,4 +50,4 @@ ax[1].plot(c, R, "o", ms=3, color="#3b6ea5", label="izmereno")
 ax[1].plot(x, 1-(np.sin(np.pi*x)/(np.pi*x))**2, "r", lw=2, label="Montgomeri: 1-(sin πx/πx)²")
 ax[1].axhline(1, color="k", ls="--", lw=1, label="bez korelacije")
 ax[1].set_xlabel("rastojanje"); ax[1].set_title("Par-korelacija nula"); ax[1].legend()
-plt.tight_layout(); plt.savefig("gue_poredjenje.png", dpi=130)
+plt.tight_layout(); plt.savefig(args.izlaz, dpi=130); print(f"grafik: {args.izlaz}")
