@@ -4,6 +4,12 @@ Zapis jednog razgovora (21. novembar 2026) između Srećka Jovančevića i Claud
 
 > **Ovo nije dokaz Rimanove hipoteze ni pokušaj dokaza.** Numerika ne može da dokaže tvrdnju o beskonačno mnogo nula. Ovde se testira **konzistentnost** jednog postulata o nuli na poznatom problemu, i ponavljaju se poznati rezultati sopstvenim računom.
 
+> **Ažuriranje, 22. novembar 2026.** Dva dana pre ovog razgovora, **20. novembra 2026**, matematičar Anthropica **Levent Alpöge** objavio je da je, radeći sa Claude-om, pronašao **dokaz Rimanove hipoteze** (i, po njegovim rečima, i uopštene Rimanove hipoteze). Dokaz postoji kao biblioteka u Lean-u (oko 17 miliona linija), bez rada čitljivog za ljude. **21. novembra** Lean i Mathlib zajednice (uz Lean FRO i Mathlib Initiative) objavile su da je dokaz mašinski proveren: kod se kompajlira, oslanja se samo na standardne aksiome, a dva nezavisna alata (comparator, con-leche) potvrdila su da dokazana teorema tačno odgovara iskazu Rimanove hipoteze u Mathlib-u.
+>
+> **Status (22. nov. 2026):** mašinski dokazana u Lean-u. Ljudsko razumevanje dokaza, recenzija i opšte prihvatanje u matematičkoj zajednici tek predstoje. Za Clay nagradu potrebna je objava u recenziranom časopisu svetskog ugleda i opšte prihvatanje dve godine posle objave. **Pravilo od dve godine ne određuje da li je dokaz tačan**, nego kada se može dodeliti nagrada.
+>
+> **Šta to menja ovde:** tvrdnje u ovom repozitorijumu da je hipoteza „otvorena“ ili „nije dokazana“ pisane su 21. novembra i treba ih čitati uz ovo ažuriranje. Ako je dokaz tačan, onda je **Λ = 0** (Rogers–Tao: Λ ≥ 0; RH: Λ ≤ 0) i važi GRH, pa su na liniji i sve nule Dirihleovih L-funkcija (vidi `razmisljanje.md`). **Eksperimenti ostaju važeći**, jer se bave statistikom nula (Lemerovi parovi, GUE, kontrakcija K), a ne pitanjem da li hipoteza važi. Pitanje *zašto* su nule na konačnim visinama pravilnije od GUE ostaje otvoreno i posle dokaza.
+
 ---
 
 ## Autori
@@ -17,7 +23,7 @@ Zapis jednog razgovora (21. novembar 2026) između Srećka Jovančevića i Claud
 
 ## 1. Kako je počelo
 
-Na TikTok-u se pojavljuju tvrdnje da je AI „rešio Rimanovu hipotezu“. To nije tačno. U avgustu 2026. Anthropic je objavio rad u kome neobjavljena istraživačka verzija Claude-a **nije** dokazala hipotezu. Pri pokušaju je poboljšala donju granicu udela nula zeta funkcije na kritičnoj liniji (sa 41,6 % na 67,2 % prema izveštajima), uz Lean formalizaciju. Taj rad nije deo ovog repozitorijuma i ovde se ne proverava.
+Na TikTok-u se pojavljuju tvrdnje da je AI „rešio Rimanovu hipotezu“. Claude je tada (21. nov.) odgovorio da to nije tačno, ali je to bila **greška**: pretraga je vratila samo avgustovske vesti, a promašila je Alpögeovu objavu od 20. novembra (vidi Ažuriranje gore i odeljak 5). Avgustovski rezultat je poseban: u avgustu 2026. Anthropic je objavio rad u kome neobjavljena istraživačka verzija Claude-a **nije** dokazala hipotezu. Pri pokušaju je poboljšala donju granicu udela nula zeta funkcije na kritičnoj liniji (sa 41,6 % na 67,2 % prema izveštajima), uz Lean formalizaciju. Taj rad nije deo ovog repozitorijuma i ovde se ne proverava.
 
 Odatle je razgovor prešao na Srećkovo dugogodišnje pitanje: **šta je nula?**
 
@@ -255,7 +261,7 @@ Posle sudara par napušta liniju kao konjugovani par (jedna nula gore, druga dol
 
 Za Lemerov par rezultat je isti na svim ciframa, pa je pouzdan. Za običan par model **ne konvergira**, i broj „oko −1,4“ iz prve verzije README-a nije pouzdan ni kao gruba procena. Ovaj lokalni model radi samo kad je sudar brz (tesan par). Za obične parove potrebna je druga metoda. Zbog toga **ne tvrdimo** koliko puta manje glačanja treba Lemerovom paru nego običnom.
 
-**Ograde:** ovo je lokalni, nerigorozan model. Ne daje stvarnu granicu za Λ. Rigorozne donje granice dobijene ovom logikom su mnogo bolje (Čordaš, Odlizko, Smit, Varga 1993: −5,9·10⁻⁹; Sauter, Gurdon, Demišel 2011: −1,15·10⁻¹¹), a Rogers i Tao su 2018. dokazali Λ ≥ 0.
+**Ograde:** ovo je lokalni, nerigorozan model. Ne daje stvarnu granicu za Λ. Ako je Alpögeov dokaz tačan (Ažuriranje na vrhu), onda je Λ = 0 tačno, pa je i pitanje gornje granice zatvoreno. Rigorozne donje granice dobijene ovom logikom su mnogo bolje (Čordaš, Odlizko, Smit, Varga 1993: −5,9·10⁻⁹; Sauter, Gurdon, Demišel 2011: −1,15·10⁻¹¹), a Rogers i Tao su 2018. dokazali Λ ≥ 0.
 
 ---
 
@@ -264,6 +270,7 @@ Za Lemerov par rezultat je isti na svim ciframa, pa je pouzdan. Za običan par m
 Zapisano radi proverljivosti, sa obe strane.
 
 **Claude-ove greške:**
+- **Na samom početku razgovora (21. nov.) Claude je odgovorio da Rimanova hipoteza nije dokazana.** Pretraga je vratila samo vesti iz avgusta 2026, a promašila je objavu Leventa Alpögea od 20. novembra 2026 o dokazu uz Claude-a, koja je tada već postojala. Na to je ukazao Srećko 22. novembra. Ispravka je u Ažuriranju na vrhu.
 - Rečenicu „eto ti dokaza da je nula faza“, za koju je Srećko rekao da ju je Claude izgovorio u ranijem razgovoru, Claude nije našao pretragom prethodnih razgovora. U jedinom pronađenom razgovoru na tu temu (jun 2026) Claude je tvrdio suprotno. Nije isključeno da postoji razgovor koji pretraga nije našla.
 - Claude je u jednom trenutku išao „prebrzo i preširoko“ (više opcija odjednom). Na Srećkov zahtev nastavljeno je korak po korak.
 - Claude je broj kao oscilaciju prvo predstavio rotacijom e^(inθ). Na Srećkov zahtev prešlo se na linijsku oscilaciju. Pri tome je ispravljeno i to da se kod linijske oscilacije u 0 menja **strana**, a ne smer kretanja.
@@ -458,6 +465,8 @@ Prema Srećku, Perplexity je pregledao matematičke delove rada i nije imao zame
 - I. Dumitriu, A. Edelman, *Matrix models for beta ensembles*, J. Math. Phys. 43 (2002): tridijagonalni GUE model
 - E. Bogomolny, O. Bohigas, P. Leboeuf, A. G. Monastra, *On the spacing distribution of the Riemann zeros: corrections to the asymptotic result*, J. Phys. A 39 (2006)
 - K. Gödel, *Über formal unentscheidbare Sätze der Principia Mathematica und verwandter Systeme I* (1931)
+- L. Alpöge (sa Claude-om), najava dokaza Rimanove hipoteze (beleška od 4 strane i Lean biblioteka), 20. nov. 2026; zajednička izjava Lean i Mathlib zajednica o mašinskoj proveri, 21. nov. 2026
+- Clay Mathematics Institute, *Rules for the Millennium Prize Problems* (2018): objava u recenziranom časopisu i opšte prihvatanje dve godine posle objave
 - Nerecenzirane 2026. tvrdnje o gornjoj granici Λ (navedene radi konteksta, **nisu proverene**): J. Gomila, Λ ≤ 0,1787854 (avg. 2026); [arXiv:2611.06245](https://arxiv.org/abs/2611.06245), Λ < 0,156821
 - Anthropic, *Riemann zeta* (avgust 2026), [anthropic.com/research/riemann-zeta](https://www.anthropic.com/research/riemann-zeta)
 - G. Frege, *Die Grundlagen der Arithmetik* (1884): broj kao osobina pojma

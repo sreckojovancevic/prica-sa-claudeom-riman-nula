@@ -93,7 +93,7 @@ Ako se računa fon Nojman, da li je Riman govorio o *svim* nulama? I kapric, zap
 | prošireni brojni sistemi (npr. Gausovi celi brojevi a + bi, algebarski celi brojevi) | Dedekindova zeta ζ_K(s) | **proširena RH (ERH)** |
 | najopštije (automorfne forme) | automorfne L-funkcije | **„velika“ RH (Grand RH)** |
 
-Pitanje „da li je govorio samo o jednoj ekspresiji, ili o svim ekspresijama kroz građenje broja“ ima, dakle, stvaran odgovor: **Riman je formulisao hipotezu za jednu ekspresiju, a matematika ju je posle proširila na čitavu porodicu**, po jednu zeta funkciju za svaki način građenja brojeva. Sve one su otvorene (nijedna nije dokazana), i za sve se veruje da su nule na istoj kritičnoj liniji ½.
+Pitanje „da li je govorio samo o jednoj ekspresiji, ili o svim ekspresijama kroz građenje broja“ ima, dakle, stvaran odgovor: **Riman je formulisao hipotezu za jednu ekspresiju, a matematika ju je posle proširila na čitavu porodicu**, po jednu zeta funkciju za svaki način građenja brojeva. Sve one su otvorene (nijedna nije dokazana), i za sve se veruje da su nule na istoj kritičnoj liniji ½. *(Ažuriranje, 22. nov. 2026: 20. novembra Levent Alpöge je objavio dokaz Rimanove hipoteze uz Claude-a, mašinski proveren u Lean-u 21. novembra, i naveo da isti metod dokazuje i uopštenu RH (GRH). Tvrdnja o GRH nije zasebno proverena u izvorima koje smo videli. Vidi Ažuriranje u README-u.)*
 
 **Ograda:** to nije fon Nojmanova ideja, i ta porodica se ne gradi brojanjem ∅. Ali duh kaprica, da nula funkcije ne pripada jednoj ekspresiji nego celom građenju brojeva, poklapa se sa načinom na koji se Rimanova hipoteza danas razume.
 
@@ -134,6 +134,7 @@ KS prema tačnoj GUE: 0,0633, uz GUE 99. percentil 0,0350, takođe van šuma. Gr
 
 ## Zaključak
 
+- *Napomena (22. nov.):* ako važi GRH (Alpögeova tvrdnja, vidi README), sve nule L(s, χ₄) su na liniji, kao što je scan i pokazao do t = 1000. Kontrakcija K je statistika *razmaka* i ne zavisi od toga da li je hipoteza dokazana.
 - **Kontrakcija postoji i kod Dirihleove L-funkcije χ₄.** K = 0,684 je daleko van GUE šuma. To odgovara na pitanje iz kaprica: kontrakcija *nije* osobina samo Rimanove zete. Javlja se i u drugoj „ekspresiji nule“.
 - Zaključak je tačan, ali tek po merenju varijanse, a ne po tesnom paru.
 - I ovde K raste sa visinom (0,650 → 0,719), u istom smeru kao kod zete.
